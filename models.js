@@ -19,7 +19,7 @@ let user = new mongoose.Schema({
         links: { spotify: String, fb: String, ig: String, twitter: String, youtube: String },
         birthdate: String,
         dp: String,
-        is_custom_dp:Boolean,
+        is_custom_dp: Boolean,
         country: String
     },
     onpod: {
@@ -55,7 +55,7 @@ let pod = new mongoose.Schema({
     host: String,
     art: String,
     next_refresh: Number,
-    track_length:Number,
+    track_length: Number,
     now_playing: String,
     started_on: Number,
     songs: [{
@@ -86,17 +86,24 @@ var songs = mongoose.model('songs', song);
 
 
 let visit = new mongoose.Schema({
-    page:String,
-    source:Object,
-   time:Number,
-   ip:String,
-   user:String
+    page: String,
+    source: Object,
+    time: Number,
+    ip: String,
+    user: String
+});
+
+let txt = new mongoose.Schema({
+    txt: String,
+    source: Object,
+    time: Number,
+    ip: String
 });
 
 var visits = mongoose.model('visits', visit);
 
+var txts = mongoose.model('txt', txt);
 
 
 
-
-module.exports = { users: users, pods: pods, songs: songs, visits };
+module.exports = { users: users, pods: pods, songs: songs, visits, txts };

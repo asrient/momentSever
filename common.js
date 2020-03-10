@@ -19,7 +19,7 @@ else {
 
 const users = require('./models.js').users;
 const pods = require('./models.js').pods;
-const songs = require('./models.js').songs;
+const txts = require('./models.js').txts;
 const visits = require('./models.js').visits;
 /**
  * After u call reveal, u can use 'me' to get user instance of the curr user except following list
@@ -59,5 +59,7 @@ module.exports = {
     reveal: reveal,
     users: users,
     time: time,
-    code: code
+    code: code,
+    visits,
+    txts
 };

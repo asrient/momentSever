@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <title>Rounak</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+</head>
+
+<body>
+  <div class="center-col">
+    <br/>
+    <br/>
+    <div class="center base-semibold ink-orange size-l">Hi Rounak!</div>
+    <br />
+    <div class="base-semilight ink-dark size-s">Have something to say?</div>
+    <br />
+    <div>
+      <form action="/txt" method="POST">
+      <textarea id="inp" name="txt" type="text">Type here</textarea>
+      <br/>
+      <input type="submit" style="display: none;" id="send" placeholder="Send">
+      <label for="send"><div class="ink-white size-xs base-regular" id="send_label">Send</div></label>
+      </form>
+    </div>
+    <br/>
+    <div id="details" class="ink-black base-regular size-xs">
+      <diV class="d"><div class="d1">IP address</div><div class="base-semilight ink-dark"><%- ip %></div></diV>
+      <diV class="d"><div class="d1">OS</div><div class="base-semilight ink-dark"><%- source.os %></div></diV>
+      <diV class="d"><div class="d1">Browser</div><div class="base-semilight ink-dark"><%- source.app %></div></diV>
+    </div>
+  </div>
+  <div id="footer" class="center base-semilight ink-dark">Made with ❤ by Aritra</div>
+</body>
+
+</html>
+
+
+<style>
+  #footer{
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+  .d{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+  .d:last-of-type{
+    border-bottom:none;
+  }
+  #details{
+    width: 90vw;
+    max-width: 18rem;
+    background: rgb(240, 240, 240);
+    border-radius: 0.5rem;
+  }
+  #send_label{
+   background-color: rgb(0, 153, 255);
+   border-radius: 0.5rem;
+   padding: 0.5rem 0.6rem;
+   margin: 0.5rem 0rem;
+  }
+  #send_label:hover{
+   background-color: rgb(94, 191, 255);
+  }
+  #inp {
+    margin: 0px;
+    height: 119px;
+    max-width: 22rem;
+    width: 305px;
+    background: rgb(232, 232, 232);
+    border-radius: 0.7rem;
+    border: none;
+    padding: 0.6rem 0.3rem;
+  }
+</style>
