@@ -16,7 +16,7 @@ socketOptions: { keepAlive: 1 }
 mongoose.connect(common.vars.db.url, opts);
 
 var app=express();
-
+app.set('port', process.env.PORT || 3000);
 app.set('views','./pages');
 app.disable('x-powered-by');
 app.set('view engine', 'ejs');
@@ -37,4 +37,4 @@ ress.send({prams:reqq.params,query:reqq.query,body:reqq.body});
     res.sendFile(__dirname+'/pages/404.html');
   });
 
-  app.listen(3000, () => console.log(`IEM Sucks!`));
+  app.listen(app.get('port'), () => console.log(`IEM Sucks!`));
