@@ -7,6 +7,8 @@ var useragent = require('useragent');
 const common = require('./common.js');
 
 const root = require('./paths/root.js');
+const permit = require('./paths/permit.js');
+const token = require('./paths/token.js');
 
 var opts = {
   useNewUrlParser: true,
@@ -124,7 +126,15 @@ app.get('/rounak', (req, res) => {
   res.render("rounak", opts);
 })
 
+app.get('/auth', (req, res) => {
+const scopes = ['https://www.googleapis.com/auth/photoslibrary'];
+const authUrl = common.gAuth().generateAuthUrl({ access_type: 'offline', scope: scopes});
+  res.redirect(authUrl);
+})
+
 app.use(root);
+app.use(permit);
+app.use(token);
 
 app.use(function (req, res) {
   res.sendFile(__dirname + '/pages/404.html');

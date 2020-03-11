@@ -27,23 +27,6 @@ const visits = require('./models.js').visits;
  *  */
 
 
-reveal = (req, callback) => {
-    if (req.cookies.ticket != undefined) {
-        users.find({ 'ticket': req.cookies.ticket }, (err, data) => {
-            if (data[0] != undefined) {
-                callback(data[0]);
-            }
-            else {
-                callback(null);
-            }
-
-        })
-    }
-    else {
-        callback(null);
-    }
-}
-
 time = () => {
     return new Date().getTime();
 }
@@ -54,12 +37,27 @@ code = (length = 10) => {
     return crypto.randomBytes(length).toString('hex');
 }
 
+const { google } = require('googleapis');
+
+var CLIENT_ID = Vars.google_photos.client_id;
+var CLIENT_SECRET = Vars.google_photos.client_secret;
+var REDIRECT_URL = Vars.google_photos.redirect_uris[0];
+
+function getAuthClient(){
+return new google.auth.OAuth2(
+    CLIENT_ID,
+    CLIENT_SECRET,
+    REDIRECT_URL
+);
+}
+
+
 module.exports = {
     vars: Vars,
-    reveal: reveal,
     users: users,
     time: time,
     code: code,
     visits,
-    txts
+    txts,
+    gAuth:getAuthClient
 };

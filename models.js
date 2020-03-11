@@ -8,37 +8,13 @@
 var mongoose = require('mongoose');
 
 let user = new mongoose.Schema({
-    code: { type: String, required: true, unique: true },
-    userid: { type: String, unique: true },
-    ticket: { type: String, unique: true },
+    id: { type: String, required: true, unique: true },
     created_on: Number,
-    last_seen: Number,
-    info: {
-        name: String,
-        email: String,
-        links: { spotify: String, fb: String, ig: String, twitter: String, youtube: String },
-        birthdate: String,
-        dp: String,
-        is_custom_dp: Boolean,
-        country: String
-    },
-    onpod: {
-        code: { type: String, unique: false },
-        role: String,
-        joined_on: Number,
-        voted_for: String,
-        trophies: Number
-    },
-    source: {
-        app: String,
-        id: String,
+    google_photos: {
         access_token: String,
         refresh_token: String,
-        next_refresh: Number
-    },
-    following: [{ code: String, is_friend: Boolean, together_for: Number, hi5: Number, last_time: Number, added_on: Number }],
-    followers_count: Number,
-    top_songs: [{ id: String, frequency: Number, last_modified: Number }]
+        expiry_date: Number
+    }
 })
 
 
