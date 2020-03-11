@@ -26,9 +26,14 @@ app.get('/permit', async (req, res) => {
           expiry_date: tokens.expiry_date
         }
       }
-      var r = new common.users(rec);
+      if(rec.google_photos.refresh_token!=undefined){
+        var r = new common.users(rec);
       r.save()
       res.send("AUTHORISED! " + JSON.stringify(rec));
+      }
+      else{
+        res.send("<h1>ERROR!<br/>Please reautharize the app.</h1><br/>ERR: refresh_token_missing");
+      }
     }
     catch (e) {
       res.send("ERROR!")
