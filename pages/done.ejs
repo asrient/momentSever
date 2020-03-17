@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/common.css" />
+  <title>Moments - Connected to Google Photos</title>
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+</head>
+
+<body>
+<div id="close" onclick="close()"></div>
+  <div id="head" style="font-size:0.9rem" class="center ink-dark base-regular">Add device</div>
+  <div class="center-col">
+    <br/>
+    <br/>
+    <br/>
+    <div class="center base-semibold ink-black size-l">Connected to Google Photos</div>
+    <br />
+    <div><img src="/icons/google-photos.svg" style="width: 6rem; height: 6rem;"></div>
+    <br/>
+    <div class="base-semilight ink-dark size-s">Now you can view all your photos on the Moments app.</div>
+    <br/>
+  </div>
+  <div id="footer" class="center base-semilight ink-dark">Made with ❤ by Aritra</div>
+</body>
+
+</html>
+
+
+<style>
+  #close{
+    position: fixed;
+    top:0.3rem;
+    left:0.5rem;
+    height: 0.8rem;
+    width: 0.8rem;
+    border-radius: 100%;
+    background-color: rgb(255, 65, 65);
+    z-index: 2;
+    border:rgb(179, 0, 0) solid thin;
+  }
+  #close:hover{
+    background-color: rgb(153, 0, 0);
+  }
+  #head{
+    background: linear-gradient(rgba(233,231,233,0.6),rgba(187,186,187,0.6));
+    border-bottom:1.4px rgba(0, 0, 0, 0.1) solid;
+    position: fixed;
+    top:0px;
+    left:0px;
+    min-height: 1.5rem;
+     max-height: 6rem;
+    width: 100vw;
+    backdrop-filter: blur(20px);
+    z-index: 0;
+  }
+  #footer{
+    font-size: 0.9rem;
+    margin-top: 2rem;
+  }
+  .d{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid rgb(255, 255, 255);
+  }
+  .d:last-of-type{
+    border-bottom:none;
+  }
+  #details{
+    width: 90vw;
+    max-width: 18rem;
+    background: rgb(240, 240, 240);
+    border-radius: 0.5rem;
+  }
+</style>
+
+<script>
+
+ document.getElementById("close").onclick = function() {
+   console.log("closing")
+  pine.window.close();
+};
+  const data={
+    "access_token":"<%- google_photos.access_token %>",
+    "expiry_date":<%- google_photos.expiry_date %>,
+    "id":"<%- id %>"
+  }
+  console.log(data);
+  console.warn("If this window doesnt close automatically, type in 'window.close()' below.");
+  var win=pine.app.getWindowById(1);
+  win.send('LOGIN_SUCCESS',data);
+</script>

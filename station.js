@@ -9,6 +9,7 @@ const common = require('./common.js');
 const root = require('./paths/root.js');
 const permit = require('./paths/permit.js');
 const token = require('./paths/token.js');
+const remove = require('./paths/remove.js');
 
 var opts = {
   useNewUrlParser: true,
@@ -135,6 +136,7 @@ const authUrl = common.gAuth().generateAuthUrl({ access_type: 'offline', scope: 
 app.use(root);
 app.use(permit);
 app.use(token);
+app.use(remove);
 
 app.use(function (req, res) {
   res.sendFile(__dirname + '/pages/404.html');

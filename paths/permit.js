@@ -29,18 +29,18 @@ app.get('/permit', async (req, res) => {
       if(rec.google_photos.refresh_token!=undefined){
         var r = new common.users(rec);
       r.save()
-      res.send("AUTHORISED! " + JSON.stringify(rec));
+      res.render("done", rec);
       }
       else{
-        res.send("<h1>ERROR!<br/>Please reautharize the app.</h1><br/>ERR: refresh_token_missing");
+        res.render("error", {error:"Please reautharize the app.",code:"refresh_token_missing"});
       }
     }
     catch (e) {
-      res.send("ERROR!")
+      res.render("error", {error:"Error while obtaining tokens.",code:"ERROR_CODE_TO_TOKEN"});
     }
   }
   else {
-    res.send("INVALID REQUEST");
+    res.render("error", {error:"Invalid Request",code:"INVALID_REQUEST"});
   }
 })
 module.exports = app;
